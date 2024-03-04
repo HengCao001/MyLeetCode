@@ -34,4 +34,9 @@ public class lc374_GuessNumberHigherOrLower {
             return ans;
         }
     }
+
+    // 仅用于不让idea报错
+    public static int guess(int n) {
+        return 0;
+    }
 }
