@@ -10,34 +10,32 @@ package template_1;
  */
 public class lc33_SearchInRotatedSortedArray {
     public int search(int[] nums, int target) {
-        int n = nums.length;
-        if (n == 0) {
-            return -1;
-        }
-        if (n == 1) {
-            return nums[0] == target ? 0 : -1;
-        }
-
         int l = 0;
-        int r = n - 1;
-        int mid;
+        int r = nums.length - 1;
 
         while (l <= r) {
-            mid = l + (r - l) / 2;
+            int mid = l + (r - l) / 2;
             if (nums[mid] == target) {
                 return mid;
-            }
-            if (nums[0] <= nums[mid]) {
-                if (nums[0] <= target && target < nums[mid]) {
-                    r = mid - 1;
+            } else if (nums[mid] > target) {
+                if (nums[0] <= nums[mid]) {
+                    if (target >= nums[0]) {
+                        r = mid - 1;
+                    } else {
+                        l = mid + 1;
+                    }
                 } else {
-                    l = mid + 1;
+                    r = mid - 1;
                 }
             } else {
-                if (nums[mid] < target && target <= nums[n-1]) {
+                if (nums[0] <= nums[mid]) {
                     l = mid + 1;
                 } else {
-                    r = mid - 1;
+                    if (nums[r] >= target) {
+                        l = mid + 1;
+                    } else {
+                        r = mid - 1;
+                    }
                 }
             }
 
